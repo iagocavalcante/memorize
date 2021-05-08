@@ -14,10 +14,12 @@ struct ContentView: View {
             CardView(card: card).onTapGesture {
                 viewModel.chooseCard(card: card)
             }
+            .padding(5)
         }
         .padding()
         .foregroundColor(.orange)
     }
+}
 
 
 struct CardView: View {
@@ -35,7 +37,9 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
             } else {
-                RoundedRectangle(cornerRadius: cornerRadius).fill()
+                if !card.isMatched {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
             }
         }
         .font(Font.system(size: fontSize(for: size)))
